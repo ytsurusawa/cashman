@@ -1,0 +1,10 @@
+name,domain,email,industry,employees,prefecture,job_title,job_body,job_url,posted_at
+株式会社山田物流,yamada-logi.example.jp,info@yamada-logi.example.jp,物流,120,東京都,営業事務（受発注管理）,受注メールを確認しExcelへ手入力、基幹システムへ転記する業務です。伝票との突合は目視で行います。,https://example.jp/job/1,2026-09-05
+株式会社山田物流,yamada-logi.example.jp,,物流,120,東京都,営業事務,受発注データの入力と転記。,https://example.jp/job/2,2026-07-20
+ミドリ商事株式会社,midori-sho.example.jp,sales@midori-sho.example.jp,卸売,85,大阪府,経理アシスタント,請求書をスプレッドシートに手作業で集計し、会計ソフトへ入力します。,https://example.jp/job/3,2026-09-10
+テックウィンド株式会社,techwind.example.jp,contact@techwind.example.jp,広告,45,東京都,バックオフィス担当,各種申請書類の紙での処理とFAX対応を含みます。,https://example.jp/job/4,2026-08-28
+株式会社ソラ不動産,sora-fudosan.example.jp,info@sora-fudosan.example.jp,不動産,210,神奈川県,カスタマーサポート,問い合わせ対応と顧客データの名寄せ作業。,https://example.jp/job/5,2026-09-12
+個人商店ハナ,hana.example.jp,info@hana.example.jp,小売,4,京都府,店舗スタッフ,接客業務です。,https://example.jp/job/6,2026-09-01
+巨大ホールディングス株式会社,kyodai.example.jp,info@kyodai.example.jp,製造,8000,愛知県,総務事務,各種手続きの処理。,https://example.jp/job/7,2026-09-08
+私立あおば学園,aoba.example.jp,info@aoba.example.jp,学校,150,千葉県,事務職員,窓口対応と書類整理。,https://example.jp/job/8,2026-09-03
+株式会社ノースゲート,northgate.example.jp,yamada.taro@northgate.example.jp,人材,90,北海道,人事アシスタント,応募者データをExcelで管理し転記します。,https://example.jp/job/9,2026-09-11
