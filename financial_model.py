@@ -88,6 +88,7 @@ class Costs:
 
     starting_capital: int = 1_000_000
     tools_monthly: int = 40_000         # メール基盤・LLM API・DB・ドメイン等
+    list_building_monthly: int = 25_000  # リスト作成の外注(1社25円 x 月1,000社)
     ads_monthly: int = 0                # アウトバウンド主軸なので初期はゼロ
     fixed_other_monthly: int = 20_000   # 会計・登記維持・雑費
     owner_draw_monthly: int = 0         # 副業のため役員報酬は取らない前提
@@ -166,6 +167,7 @@ def simulate(s: Scenario) -> list[MonthResult]:
         outsource_cost = outsourced_hours * s.capacity.outsource_hourly
         opex = (
             s.costs.tools_monthly
+            + s.costs.list_building_monthly
             + s.costs.ads_monthly
             + s.costs.fixed_other_monthly
             + s.costs.owner_draw_monthly
@@ -366,7 +368,8 @@ def default_phases() -> list[Phase]:
             funnel=Funnel(sends_per_workday=40, reply_rate=0.05, ramp_months=3),
             offer=Offer(setup_fee=300_000, mrr=150_000, monthly_churn=0.03),
             capacity=Capacity(weekly_hours=12.0),
-            costs=Costs(tools_monthly=40_000, fixed_other_monthly=20_000),
+            costs=Costs(tools_monthly=40_000, list_building_monthly=25_000,
+                        fixed_other_monthly=20_000),
         ),
         Phase(
             name="P2 専業化 / 単価を月額50万に上げる",
@@ -375,8 +378,8 @@ def default_phases() -> list[Phase]:
             offer=Offer(setup_fee=1_000_000, mrr=500_000, monthly_churn=0.025),
             capacity=Capacity(weekly_hours=40.0, onboarding_hours=20.0,
                               account_hours_per_month=3.0, sales_ops_hours=16.0),
-            costs=Costs(tools_monthly=150_000, fixed_other_monthly=80_000,
-                        owner_draw_monthly=600_000),
+            costs=Costs(tools_monthly=150_000, list_building_monthly=40_000,
+                        fixed_other_monthly=80_000, owner_draw_monthly=600_000),
         ),
         Phase(
             name="P3 チーム化 / 納品を人に回す",
@@ -386,8 +389,8 @@ def default_phases() -> list[Phase]:
                         gross_margin=0.62),
             capacity=Capacity(weekly_hours=160.0, onboarding_hours=20.0,
                               account_hours_per_month=3.0, sales_ops_hours=40.0),
-            costs=Costs(tools_monthly=400_000, fixed_other_monthly=300_000,
-                        owner_draw_monthly=1_500_000),
+            costs=Costs(tools_monthly=400_000, list_building_monthly=80_000,
+                        fixed_other_monthly=300_000, owner_draw_monthly=1_500_000),
         ),
     ]
 
@@ -435,9 +438,9 @@ def simulate_phased(phases: list[Phase], starting_capital: int = 1_000_000):
             gross_profit = revenue * ph.offer.gross_margin
 
             outsource_cost = outsourced_hours * ph.capacity.outsource_hourly
-            opex = (ph.costs.tools_monthly + ph.costs.ads_monthly
-                    + ph.costs.fixed_other_monthly + ph.costs.owner_draw_monthly
-                    + outsource_cost)
+            opex = (ph.costs.tools_monthly + ph.costs.list_building_monthly
+                    + ph.costs.ads_monthly + ph.costs.fixed_other_monthly
+                    + ph.costs.owner_draw_monthly + outsource_cost)
             net_cash = gross_profit - opex
             cash += net_cash
 
